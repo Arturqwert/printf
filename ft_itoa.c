@@ -11,11 +11,8 @@ char	*ft_itoa(unsigned long nbr, int base)
 	str = NULL;
 	if (nbr == 0)
 		len++;
-	while (temp_nbr > 0)
-	{
+	while (temp_nbr > 0 && len++ >= 0)
 		temp_nbr /= base;
-		len++;
-	}
 	str = malloc(len + 1);
 	str[len] = '\0';
 	while (len > 0)
@@ -42,11 +39,8 @@ char	*ft_Xitoa(unsigned long nbr, int base)
 	str = NULL;
 	if (nbr == 0)
 		len++;
-	while (temp_nbr > 0)
-	{
+	while (temp_nbr > 0 && len++ >= 0)
 		temp_nbr /= base;
-		len++;
-	}
 	str = malloc(len + 1);
 	str[len] = '\0';
 	while (len > 0)

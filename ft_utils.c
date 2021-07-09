@@ -46,3 +46,12 @@ char	*ft_str_tolower(char *str)
 		str[i] = ft_tolower(str[i]);
 	return (str);
 }
+
+t_help	ft_init_help(void)
+{
+	t_help	help;
+
+	help.res = 0;
+	help.minus = 0;
+	return (help);
+}

@@ -52,7 +52,7 @@ t_treat	init(void)
 //     return (res);
 // }
 
-int	ft_parse(int c, t_treat treat, va_list ap)
+int	ft_parse(int c, t_treat treat, va_list ap, t_help *help)
 {
 	int	res;
 
@@ -64,7 +64,7 @@ int	ft_parse(int c, t_treat treat, va_list ap)
 	else if (c == 'x' || c == 'X')
 		res += ft_printf_x(va_arg(ap, unsigned int), &treat, c);
 	else if (c == 'd' || c == 'i')
-		res += ft_printf_d(va_arg(ap, int), &treat);
+		res += ft_printf_d(va_arg(ap, int), &treat, help);
 	else if (c == 'p')
 		res += ft_printf_p(va_arg(ap, unsigned long long), &treat);
 	else if (c == 'u')
@@ -79,6 +79,7 @@ int	ft_parse(int c, t_treat treat, va_list ap)
 int	ft_treat(const char *str, va_list args)
 {
 	t_treat	treat;
+	t_help	help;
 	int		i;
 	int		res;
 
@@ -86,7 +87,7 @@ int	ft_treat(const char *str, va_list args)
 	res = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '%' && str[i+1] != '\0')
+		if (str[i] == '%' && str[i + 1] != '\0')
 		{
 			i++;
 			treat = init();
@@ -95,7 +96,7 @@ int	ft_treat(const char *str, va_list args)
 				treat.width = treat.width * 10 + (str[i] - '0');
 				i++;
 			}
-			ft_parse(str[i], treat, args);
+			ft_parse(str[i], treat, args, &help);
 		}
 		else
 			res += ft_putchar(str[i]);

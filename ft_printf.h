@@ -13,6 +13,14 @@ typedef struct s_treat
 	int		width;
 }			t_treat;
 
+typedef struct s_help
+{
+	int		res;
+	char	*str;
+	int		minus;
+	int		len;
+}				t_help;
+
 int		ft_printf(const char *str, ...);
 int		ft_putchar(char c);
 int		ft_putstr(char *str, int len);
@@ -22,7 +30,7 @@ char	*ft_Xitoa(unsigned long nbr, int base);
 char	*ft_u_itoa(unsigned int n);
 
 int		ft_printf_x(unsigned long nbr, t_treat *treat, char c);
-int		ft_printf_d(long nbr, t_treat *treat);
+int		ft_printf_d(long nbr, t_treat *treat, t_help *help);
 int		ft_printf_s(char *str, t_treat *treat);
 int		ft_printf_c(char c, t_treat *treat);
 int		ft_printf_p(unsigned long long ull, t_treat *treat);
@@ -30,6 +38,7 @@ int		ft_printf_u(unsigned int unsi, t_treat *treat);
 int		ft_printf_percent(t_treat *treat);
 
 t_treat	init(void);
+t_help	ft_init_help(void);
 
 char	*ft_strdup(char *s1);
 char	*base_treat(unsigned long long ull_save, int base, char *res,
@@ -45,6 +54,6 @@ char	*ft_generate(char *res, long nbr, int len, int isneg);
 int		ft_put_uint(char *unsi_int, t_treat *treat);
 
 int		ft_treat(const char *str, va_list args);
-int		ft_parse(int c, t_treat treat, va_list ap);
+int		ft_parse(int c, t_treat treat, va_list ap, t_help *help);
 
 #endif
